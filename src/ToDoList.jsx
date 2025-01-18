@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function ToDoList() {
-    const [tasks, setTasks] = useState([{ text: 'work', completed: false }]);  
+    const [tasks, setTasks] = useState([{ text: 'Get better', completed: false }]);  
     const [newTask, setNewTask] = useState('');
     const [error, setNewError] = useState('');
     const [editIndex, setEditIndex] = useState(null);
