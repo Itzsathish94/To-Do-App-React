@@ -1,111 +1,200 @@
-
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-image:url('https://i.pinimg.com/originals/ac/54/a1/ac54a128942c750799c2c1fe144d2467.jpg');
+  background-image: url('https://i.pinimg.com/originals/ac/54/a1/ac54a128942c750799c2c1fe144d2467.jpg');
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-
-
 .to-do-list {
   background: white;
-  width: 700px; 
+  width: 700px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px hsla(0, 0%, 0%, 0.1); 
+  box-shadow: 0 4px 10px hsla(0, 0%, 0%, 0.1);
   text-align: center;
+  margin: 0px;
 }
 
-
-h1{
+h1 {
   font-size: 3rem;
 }
 
-button{
+button {
   font-size: 1.1rem;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 5px 12px;  /* Adjusted padding for compact buttons */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.5s ease;
+  width: 35px; /* Set a uniform width for all buttons */
+  height: 35px; /* Set a uniform height for all buttons */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.add-button{
+.add-button {
   background-color: hsl(125, 47%, 54%);
+  width: 50px;
 }
 
-.add-button:hover{
+.add-button:hover {
   background-color: hsl(125, 47%, 44%);
 }
 
-.edit-button{
+.edit-button {
   background-color: hsla(223, 100%, 50%, 0.811);
 }
 
-.edit-button:hover{
+.edit-button:hover {
   background-color: hsla(223, 100%, 40%, 0.811);
 }
 
-.delete-button{
+.delete-button {
   background-color: hsl(10, 90%, 50%);
 }
 
-.delete-button:hover{
-  background-color:  hsl(10, 90%, 40%);
+.delete-button:hover {
+  background-color: hsl(10, 90%, 40%);
 }
 
-.move-button{
+.move-button {
   background-color: hsl(198, 100%, 46%);
 }
 
-.move-button:hover{
-  background-color:  hsl(198, 100%, 36%);
+.move-button:hover {
+  background-color: hsl(198, 100%, 36%);
 }
 
-input[type='text']{
-  font-size:1.6rem;
+input[type='text'] {
+  font-size: 1.6rem;
   padding-top: 4px;
   padding-bottom: 6px;
-  border: 2px solid hsla(0, 0%, 80%,0.5);
+  border: 2px solid hsla(0, 0%, 80%, 0.5);
   border-radius: 5px;
-  color:hsla(0, 0%, 0%,0.5);
+  color: hsla(0, 0%, 0%, 0.5);
   margin-right: 3px;
+  width: 60%; /* Ensure input takes up reasonable width */
 }
 
-ol{
-  padding:0;
+.add-task {
+  display: flex;           /* Align input and button in a row */
+  justify-content: center; /* Center elements horizontally */
+  align-items: center;     /* Align elements vertically */
+  gap: 10px;               /* Adds space between input and button */
 }
 
-li{
+ol {
+  padding: 0;
+}
+
+li {
   font-size: 1.5rem;
   font-weight: bold;
   padding: 15px;
   background-color: hsl(0, 0%, 97%);
-  margin-bottom:10px;
-  border:3px solid hsl(0, 0%, 85%,0.75);
+  margin-bottom: 10px;
+  border: 3px solid hsl(0, 0%, 85%, 0.75);
   border-radius: 5px;
   display: flex;
   align-items: center;
 }
 
-.text{
-  flex:1;
+.text {
+  flex: 1;
 }
 
-.delete-button , .move-button{
-  padding:8px 12px;
+.delete-button,
+.move-button {
+  padding: 5px; /* Adjusted padding to match button size */
   font-size: 1.1rem;
-  margin-left:10px;
+  margin-left: 10px;
 }
 
-.completed-task{
-  text-decoration:line-through;
+.completed-task {
+  text-decoration: line-through;
   color: gray;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .to-do-list {
+    width: 90%;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;  /* Slightly smaller heading */
+  }
+
+  .add-task {
+    width: 100%;
+    flex-direction: column; /* Stack input and button vertically */
+    gap: 5px;
+  }
+
+  input[type='text'] {
+    width: 100%;  /* Input takes up full width on mobile */
+  }
+
+  button {
+    width: 40px;  /* Smaller buttons */
+    height: 40px;  /* Adjust size for mobile */
+  }
+
+  li {
+    font-size: 1.3rem;  /* Slightly smaller text */
+    padding: 10px;
+  }
+
+  .delete-button,
+  .move-button,
+  .edit-button {
+    width: 30px;  /* Smaller buttons for mobile */
+    height: 30px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem; /* Make heading smaller for very small screens */
+  }
+
+  .to-do-list {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .add-task {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  input[type='text'] {
+    width: 100%;
+  }
+
+  button {
+    width: 35px;
+    height: 35px;
+  }
+
+  .delete-button,
+  .move-button,
+  .edit-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  li {
+    font-size: 1.2rem; /* Smaller font for smaller screens */
+    padding: 8px;
+  }
 }

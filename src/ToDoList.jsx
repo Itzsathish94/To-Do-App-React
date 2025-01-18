@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
 function ToDoList() {
-    const [tasks, setTasks] = useState([{ text: 'Get better', completed: false }]);  
+    const [tasks, setTasks] = useState([{ text: 'Get better', completed: false }]);
     const [newTask, setNewTask] = useState('');
     const [error, setNewError] = useState('');
     const [editIndex, setEditIndex] = useState(null);
-    const [successMessage, setSuccessMessage] = useState('');   
-
-    
+    const [successMessage, setSuccessMessage] = useState('');
 
     function handleNewTask(e) {
         setNewTask(e.target.value);
@@ -35,8 +33,8 @@ function ToDoList() {
         setTasks(t => [...t, { text: newTask.trim(), completed: false }]);
         setNewError('');
         setNewTask('');
-        setSuccessMessage('Task added successfully!');  
-        setTimeout(()=>setSuccessMessage(''),2500);
+        setSuccessMessage('Task added successfully!');
+        setTimeout(() => setSuccessMessage(''), 2500);
     }
 
     function deleteTask(index) {
@@ -74,13 +72,12 @@ function ToDoList() {
         }
         const updatedTasks = [...tasks];
         updatedTasks[editIndex] = { text: newTask.trim(), completed: false };
-        
         setTasks(updatedTasks);
         setNewTask('');
         setEditIndex(null);
         setNewError('');
-        setSuccessMessage('Task updated successfully!'); 
-        setTimeout(()=>setSuccessMessage(''),2500); 
+        setSuccessMessage('Task updated successfully!');
+        setTimeout(() => setSuccessMessage(''), 2500);
     }
 
     function toggleCompletion(index) {
@@ -89,7 +86,6 @@ function ToDoList() {
         setTasks(updatedTasks);
     }
 
-  
     return (
         <div className="to-do-list">
             <h1>To Do List</h1>
@@ -102,7 +98,7 @@ function ToDoList() {
                     onKeyDown={handleKeyDown}
                 />
                 <button className='add-button' onClick={editIndex !== null ? saveEdit : addNewTask}>
-                    {editIndex !== null ? 'Save Task' : 'Add Task'}
+                    {editIndex !== null ? '✔️' : 'Add'}
                 </button>
             </div>
             {error && <p className="error-message" style={{ color: 'red' }}>{error}</p>}
@@ -112,16 +108,15 @@ function ToDoList() {
                     <li key={index}>
                         <span
                             className={`text ${task.completed ? 'completed-task' : ''}`}
-                            onClick={() => toggleCompletion(index)} 
+                            onClick={() => toggleCompletion(index)}
                         >
                             {task.text}
                         </span>
-                        <button className="edit-button" onClick={() => startEdit(index)}>Edit</button>
-                        <button className="delete-button" onClick={() => deleteTask(index)}>Delete</button>
+                        <button className="edit-button" onClick={() => startEdit(index)}>✏️</button>
+                        <button className="delete-button" onClick={() => deleteTask(index)}>🗑️</button>
                         <button className="move-button" onClick={() => moveTaskUp(index)}>⬆️</button>
                         <button className="move-button" onClick={() => moveTaskDown(index)}>⬇️</button>
                     </li>
-                   
                 ))}
             </ol>
         </div>
