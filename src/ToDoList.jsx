@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ToDoList() {
-    const [tasks, setTasks] = useState([{ text: 'Get better', completed: false }]);
+    const [tasks, setTasks] = useState([]);
     const [newTask, setNewTask] = useState('');
     const [error, setNewError] = useState('');
     const [editIndex, setEditIndex] = useState(null);
     const [successMessage, setSuccessMessage] = useState('');
+
+    useEffect(() => {
+        const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+        if (savedTasks && Array.isArray(savedTasks)) {
+            setTasks(savedTasks);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (tasks && tasks.length > 0) {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+    }, [tasks]);
 
     function handleNewTask(e) {
         setNewTask(e.target.value);
@@ -30,7 +43,9 @@ function ToDoList() {
             setNewError('Task already exists');
             return;
         }
-        setTasks(t => [...t, { text: newTask.trim(), completed: false }]);
+        const newTaskObj = { text: newTask.trim(), completed: false };
+        const updatedTasks = [...tasks, newTaskObj];
+        setTasks(updatedTasks);
         setNewError('');
         setNewTask('');
         setSuccessMessage('Task added successfully!');
@@ -38,7 +53,8 @@ function ToDoList() {
     }
 
     function deleteTask(index) {
-        setTasks(t => t.filter((_, i) => i !== index));
+        const updatedTasks = tasks.filter((_, i) => i !== index);
+        setTasks(updatedTasks);
     }
 
     function moveTaskUp(index) {
@@ -89,7 +105,7 @@ function ToDoList() {
     return (
         <div className="to-do-list">
             <h1>To Do List</h1>
-            <div className='add-task'>
+            <div className="add-task">
                 <input
                     type="text"
                     placeholder="Enter a task"
@@ -97,7 +113,7 @@ function ToDoList() {
                     value={newTask}
                     onKeyDown={handleKeyDown}
                 />
-                <button className='add-button' onClick={editIndex !== null ? saveEdit : addNewTask}>
+                <button className="add-button" onClick={editIndex !== null ? saveEdit : addNewTask}>
                     {editIndex !== null ? '✔️' : 'Add'}
                 </button>
             </div>
